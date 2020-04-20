@@ -20,7 +20,8 @@ public class ItemTrackerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ItemTrackerApplication.class, args);
 	}
-
+	
+	// Esimerkkidataa bean-annotaation avulla. Ladataan heti sivun avautuessa ja asetellaan items.html-tiedostoon.
 	@Bean
 	public CommandLineRunner itemDemoData(ItemRepository itemRepository, TrackerRepository trackerRepository) {
 		return (args) -> {

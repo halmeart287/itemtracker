@@ -20,6 +20,8 @@ public class Tracker {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tracker")
 	private List<Item> items;
 
+	
+	// Konstruktorit
 	public Tracker() {
 		super();
 		this.trackId = null;
@@ -37,6 +39,8 @@ public class Tracker {
 		this.track = track;
 	}
 
+	
+	// Getterit ja Setterit
 	public Long getTrackId() {
 		return trackId;
 	}
