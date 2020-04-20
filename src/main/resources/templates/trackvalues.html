@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Track Values</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Tracking values for troubleshooting:</h1>
+	<table>
+		<tr>
+			<th>Track</th>
+		</tr>
+
+		<tr th:each="tracking : ${trackvalues}">
+			<td th:text="${tracking.track}">value</td>
+		</tr>
+	</table>
+	
+	<a href="/items">Return to listing</a>
+
+</body>
+</html>

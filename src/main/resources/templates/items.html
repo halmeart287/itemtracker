@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Item listing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Items</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Time</th>
+			<th>Tracking</th>
+		</tr>
+
+		<tr th:each="item : ${items}">
+			<td th:text="${item.itemId}">id</td>
+			<td th:text="${item.name}">name</td>
+			<td th:text="${item.time}">time</td>
+			<td th:text="${item.tracker.track}">tracking</td>
+		</tr>
+	</table>
+
+	<a href="/additem" class="btn btn-success">New Item</a>
+
+</body>
+</html>
