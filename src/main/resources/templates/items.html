@@ -3,28 +3,45 @@
 <head>
 <title>Item listing</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Items</h1>
-	<table class="table table-striped">
-		<tr>
-			<th>Id</th>
-			<th>Name</th>
-			<th>Time</th>
-			<th>Tracking</th>
-		</tr>
 
-		<tr th:each="item : ${items}">
-			<td th:text="${item.itemId}">id</td>
-			<td th:text="${item.name}">name</td>
-			<td th:text="${item.time}">time</td>
-			<td th:text="${item.tracker.track}">tracking</td>
-		</tr>
-	</table>
+	<div id="itemlist" class="jumbotron text-center container">
+		<h1>Custom Item Tracker</h1>
+		<h3>Here are the trackable items.</h3>
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th>Time</th>
+				<th>Tracking</th>
+			</tr>
 
-	<a href="/additem" class="btn btn-success">New Item</a>
+			<tr th:each="item : ${items}">
+				<td th:text="${item.name}">name</td>
+				<td th:text="${item.time}">time</td>
+				<td th:text="${item.tracker.track}">tracking</td>
+		</table>
 
+		<a href="/additem" class="btn btn-success">New Item</a>
+	</div>
+	
+	<br>
+
+	<div id="trackinglist" class="container">
+		<h2>Tracking</h2>
+		<table id=tracktable class="table table-bordered">
+			<tr>
+				<th>Name</th>
+				<th>Time</th>
+			</tr>
+			<tr th:if="${item.tracker.track == 'Yes'}" th:each="item : ${items}">
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.time}"></td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
