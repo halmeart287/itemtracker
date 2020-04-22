@@ -1,5 +1,7 @@
+
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Item listing</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -24,7 +26,8 @@
 				<td th:text="${item.time}"></td>
 				<td th:text="${item.tracker.track}"></td>
 				<!-- To do: Lisää poisto ja editointimahdollisuus -->
-				<td><a th:href="@{/deleteitem/{itemId}(itemId=${item.itemId})}">Delete</a></td>
+				<td sec:authorize="hasAuthority('ARTTU')"><a
+					th:href="@{/deleteitem/{itemId}(itemId=${item.itemId})}">Delete</a></td>
 				<td><a th:href="@{/edititem/{itemId}(itemId=${item.itemId})}">Edit</a></td>
 				<!-- To do: Radio button "Yes" ja "No" trackerille. -->
 		</table>
