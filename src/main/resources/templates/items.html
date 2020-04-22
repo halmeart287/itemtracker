@@ -24,9 +24,9 @@
 				<td th:text="${item.time}"></td>
 				<td th:text="${item.tracker.track}"></td>
 				<!-- To do: Lisää poisto ja editointimahdollisuus -->
-				<!-- <td><a th:href="@{/deleteitem/{itemId}(itemId=${item.itemId})}>Delete</td>" -->
-				<!-- <td><a th:href="@{/edititem/{itemId}(itemId=${item.itemId})}">Edit</a></td> -->
-				<!-- To do: Radio button "Yes" ja "No"? -->
+				<td><a th:href="@{/deleteitem/{itemId}(itemId=${item.itemId})}">Delete</a></td>
+				<td><a th:href="@{/edititem/{itemId}(itemId=${item.itemId})}">Edit</a></td>
+				<!-- To do: Radio button "Yes" ja "No" trackerille. -->
 		</table>
 
 		<a href="/additem" class="btn btn-info">New Item</a>
@@ -45,6 +45,7 @@
 				<td th:text="${item.name}"></td>
 				<td th:text="${item.time}"></td>
 				<!-- To do: Poista listasta = vaihda track-arvo 'No' napin painalluksella? -->
+				<!--  <td><a th:href="@{/removeitem/{itemId}(itemId=${item.itemId})}">Remove</td> -->
 				<!-- Erillinen JavaScript komento! Tyyliin "document.getElementById('change-button').addEventListener('click', event => {document.getElementById('something').setAttribute('track', 'text: No');}); -->
 			</tr>
 		</table>
