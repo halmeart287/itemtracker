@@ -46,6 +46,7 @@ public class ItemController {
 	// 'Item' -olion tallennuspyyntö.
 	@RequestMapping(value = "/saveitem", method = RequestMethod.POST)
 	public String saveItem(Item item) {
+
 		itemRepository.save(item);
 		return "redirect:items";
 	}

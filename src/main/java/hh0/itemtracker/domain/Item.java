@@ -7,11 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity	// Luodaan 'Item' -luokkaolio.
+@Entity // Luodaan 'Item' -luokkaolio.
 public class Item {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO) // Annotaatiot @Id ja @GeneratedValue automatisoivat olion 'id' arvon.
+	@GeneratedValue(strategy = GenerationType.AUTO) // Annotaatiot @Id ja @GeneratedValue automatisoivat olion 'id'
+													// arvon.
 	private Long itemId;
 	private String name, time;
 
@@ -19,9 +20,8 @@ public class Item {
 	@JoinColumn(name = "trackId") // Monen suhde yhteen taulukkoyhteys 'Tracking' -luokkaolion kanssa.
 	private Tracker tracker;
 
-	
 	// Konstruktorit
-	
+
 	public Item() {
 		super();
 		this.itemId = null;
@@ -44,7 +44,7 @@ public class Item {
 		this.time = time;
 		this.tracker = tracker;
 	}
-	
+
 	// Getterit ja Setterit
 
 	public Long getItemId() {
@@ -78,7 +78,7 @@ public class Item {
 	public void setTracker(Tracker tracker) {
 		this.tracker = tracker;
 	}
-	
+
 	// toString
 
 	@Override
