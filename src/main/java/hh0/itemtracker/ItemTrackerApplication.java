@@ -39,8 +39,8 @@ public class ItemTrackerApplication {
 			itemRepository.save(new Item("Dravanian Bass", "12:00", trackerRepository.findByTrack("No").get(0)));
 
 			// Luodaan väliaikaiset käyttäjät
-			User user1 = new User("user", "$2y$12$ir1tTOe.NslMiWQ6xfGzbeo4l0gCSvS4oPaMc81JLk8yHc847Hef2", "USER"); // tavis
-			User user2 = new User("admin", "$2y$12$Of.UuJyPZLjWdp/pLsw08.7iYMtP5a7VwJfBwoM1TGcLUJN74rqr.", "ARTTU"); // arttu
+			User user1 = new User("Tavis", "$2y$12$ir1tTOe.NslMiWQ6xfGzbeo4l0gCSvS4oPaMc81JLk8yHc847Hef2", "USER"); // tavis
+			User user2 = new User("Admin", "$2y$12$Of.UuJyPZLjWdp/pLsw08.7iYMtP5a7VwJfBwoM1TGcLUJN74rqr.", "ARTTU"); // arttu
 			userRepository.save(user1);
 			userRepository.save(user2);
 

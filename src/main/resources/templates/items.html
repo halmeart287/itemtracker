@@ -11,6 +11,13 @@
 </head>
 <body>
 
+	<div id="account">
+		<p th:inline="text">Hello, [[${#httpServletRequest.remoteUser}]]!</p>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out">
+		</form>
+	</div>
+
 	<div id="itemlist" class="jumbotron text-center container">
 		<h1>Custom Item Tracker</h1>
 		<h3>Here are the trackable items.</h3>

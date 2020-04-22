@@ -73,7 +73,11 @@ public class ItemController {
 		return "login";
 	}
 
-	// To Do: Logout
+	// Logout
+	@RequestMapping(value = "/logout")
+	public String logout() {
+		return "redirect:login";
+	}
 
 	// ToDo: 'Item' -olion poistaminen tracking-listalta napin painalluksella ilman
 	// erillistä muokkausikkunaa.
