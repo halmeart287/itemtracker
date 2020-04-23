@@ -3,12 +3,14 @@ package hh0.itemtracker.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import hh0.itemtracker.domain.Item;
 import hh0.itemtracker.domain.ItemRepository;
@@ -36,6 +38,7 @@ public class ItemController {
 
 	// 'Item' -olion lisäyslomake.
 
+	@PreAuthorize("hasAuthority('ARTTU')") // Security. Admin-ominaisuus.
 	@RequestMapping(value = "/additem", method = RequestMethod.GET)
 	public String getItemForm(Model model, User user) {
 		model.addAttribute("item", new Item());
@@ -46,7 +49,6 @@ public class ItemController {
 	// 'Item' -olion tallennuspyyntö.
 	@RequestMapping(value = "/saveitem", method = RequestMethod.POST)
 	public String saveItem(Item item) {
-
 		itemRepository.save(item);
 		return "redirect:items";
 	}
@@ -77,6 +79,23 @@ public class ItemController {
 	@RequestMapping(value = "/logout")
 	public String logout() {
 		return "redirect:login";
+	}
+
+	// REST /error redirect Whitelabel sivulta. Hieman turha.
+	@RestController
+	public class IndexController implements ErrorController {
+		private static final String PATH = "/error";
+
+		@RequestMapping(value = PATH)
+		public String error() {
+			return "Something went wrong.";
+		}
+
+		@Override
+		public String getErrorPath() {
+			return PATH;
+		}
+
 	}
 
 	// ToDo: 'Item' -olion poistaminen tracking-listalta napin painalluksella ilman

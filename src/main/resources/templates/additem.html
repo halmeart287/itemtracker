@@ -3,29 +3,35 @@
 <head>
 <title>Adding an item</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/main.css"
+	th:href="@{css/main.css}" />
 </head>
 <body>
 
-	<h2>Add a new item for tracker:</h2>
-	<form action="#" th:action="@{/saveitem}" th:object=${item}
-		method="post">
-		<p>
-			Name: <input type="text" th:field="${item.name}"
-				placeholder="Esimerkki II" />
-		</p>
-		<p>
-			Time: <input type="text" th:field="${item.time}" placeholder="18:40" />
-		</p>
-		<p>
-			Tracking: <select id="values" th:field="*{tracker}"
-				class="form-control">
-				<option th:each="tracker: ${trackvalues}"
-					th:value="${tracker.trackId}" th:text="${tracker.track}"></option>
-			</select>
-		</p>
+	<div id="newitemform" class="c-container">
+		<h2>Add a new item for tracker:</h2>
+		<form action="#" th:action="@{/saveitem}" th:object=${item}
+			method="post">
+			<p>
+				Name: <input type="text" th:field="${item.name}"
+					placeholder="Esimerkki II" required />
+				<!-- 'required' on HTML5 käsky täyttää kenttä. Validation "oikotie-ratkaisu". -->
+			</p>
+			<p>
+				Time: <input type="text" th:field="${item.time}" placeholder="18:40"
+					required />
+			</p>
+			<p>
+				Tracking: <select id="values" th:field="*{tracker}"
+					class="form-control">
+					<option th:each="tracker: ${trackvalues}"
+						th:value="${tracker.trackId}" th:text="${tracker.track}"></option>
+				</select>
+			</p>
 
-		<input type="submit" value="Submit" />
-	</form>
+			<input type="submit" value="Submit" />
+		</form>
+	</div>
 
 </body>
 </html>

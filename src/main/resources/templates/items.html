@@ -8,11 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="css/main.css"
+	th:href="@{css/main.css}" />
 </head>
 <body>
 
 	<div id="account">
-		<p th:inline="text">Hello, [[${#httpServletRequest.remoteUser}]]!</p>
+		<h4 th:inline="text">Hello, [[${#httpServletRequest.remoteUser}]]!</h4>
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out">
 		</form>
@@ -28,7 +30,8 @@
 				<th>Tracking</th>
 			</tr>
 
-			<tr th:each="item : ${items}">
+			<tr th:each="item : ${items}" th:unless="${item.name == ''}">
+				<!-- Väliaikainen tapa olla printtaamatta tyhjää lisäystä 'name' -attribuutin kautta. -->
 				<td th:text="${item.name}"></td>
 				<td th:text="${item.time}"></td>
 				<td th:text="${item.tracker.track}"></td>
@@ -37,21 +40,29 @@
 					th:href="@{/deleteitem/{itemId}(itemId=${item.itemId})}">Delete</a></td>
 				<td><a th:href="@{/edititem/{itemId}(itemId=${item.itemId})}">Edit</a></td>
 				<!-- To do: Radio button "Yes" ja "No" trackerille. -->
+				<!--<tr>
+				To do: Viesti onnistuneesta lisäyksestä.
+				 <td th:if="${???}">Item added successfully to the
+					database.</td>
+			</tr>-->
 		</table>
 
-		<a href="/additem" class="btn btn-info">New Item</a>
+		<div th:if="${#authorization.expression('hasAuthority(''ARTTU'')')}">
+			<a href="/additem" class="btn btn-info">New Item</a>
+		</div>
 	</div>
 
 	<br>
 
 	<div id="trackinglist" class="container">
 		<h2>Tracking</h2>
-		<table id=tracktable class="table table-bordered">
+		<table id=tracktable class="table table-bordered c-table">
 			<tr>
 				<th>Name</th>
 				<th>Time</th>
 			</tr>
-			<tr th:if="${item.tracker.track == 'Yes'}" th:each="item : ${items}">
+			<tr th:if="${item.tracker.track == 'Yes'}" th:each="item : ${items}"
+				th:unless="${item.name == ''}">
 				<td th:text="${item.name}"></td>
 				<td th:text="${item.time}"></td>
 				<!-- To do: Poista listasta = vaihda track-arvo 'No' napin painalluksella? -->

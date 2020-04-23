@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.c-container {
+	margin-top: 100px;
+	text-align: center;
+}
+
+.login {
+	margin-top: 15px;
+	margin-left: 10px;
+}
+
+.c-table {
+	background-color: white;
+}
+
+body {
+	background-color: #cecece;
+}

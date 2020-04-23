@@ -3,29 +3,34 @@
 <head>
 <title>Edit an item entry</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/main.css"
+	th:href="@{css/main.css}" />
 </head>
 <body>
 
-	<h2>Edit an item entry</h2>
-	<form action="#" th:action="@{/saveitem}" th:object=${item}
-		method="post">
-		<input type=hidden th:field="${item.itemId}" />
-		<p>
-			Item: <input type="text" th:field="${item.name}" />
-		</p>
-		<p>
-			Time: <input type="text" th:field="${item.time}" />
-		</p>
-		<p>
-			Tracking: <select id="values" th:field="*{tracker}"
-				class="form-control">
-				<option th:each="tracker: ${trackvalues}"
-					th:value="${tracker.trackId}" th:text="${tracker.track}"></option>
-			</select>
-		</p>
+	<div id="itemeditform" class="c-container">
 
-		<input type="submit" value="Submit" />
-	</form>
+		<h2>Edit an item entry</h2>
+		<form action="#" th:action="@{/saveitem}" th:object=${item}
+			method="post">
+			<input type=hidden th:field="${item.itemId}" />
+			<p>
+				Item: <input type="text" th:field="${item.name}" required />
+			</p>
+			<p>
+				Time: <input type="text" th:field="${item.time}" required />
+			</p>
+			<p>
+				Tracking: <select id="values" th:field="*{tracker}"
+					class="form-control">
+					<option th:each="tracker: ${trackvalues}"
+						th:value="${tracker.trackId}" th:text="${tracker.track}"></option>
+				</select>
+			</p>
+
+			<input type="submit" value="Submit" />
+		</form>
+	</div>
 
 </body>
 </html>
